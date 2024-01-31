@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 function Sidebar() {
     return (
         <div className="sidenav">
-            <Link to="">Browse</Link>
-            <Link to="">Radio map</Link>
-            <Link to="">Favorites</Link>
+            <a href="#">Browse</a>
+            <a href="#">Radio map</a>
+            <a href="#">Favorites</a>
         </div>
     );
 }
