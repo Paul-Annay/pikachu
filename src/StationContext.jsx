@@ -1,11 +1,18 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useStations } from "./useStations";
+import { useLocalStorageState } from "./useLocalStorage";
 
 const StationContext = createContext();
 
 function StationProvider({ children }) {
     const { stations, isLoading, error } = useStations("stations/topvote/15");
-    const [selectedStationId, setSelectedStationId] = useState("");
+    const [favoriteStations, setFavoriteStations] = useLocalStorageState(
+        [],
+        "favoriteStations"
+    );
+    const [selectedStationId, setSelectedStationId] = useState(
+        "4fcdf908-9025-4308-a82e-c061b42e6e28"
+    );
     const [searchQuery, setSearchQuery] = useState("");
 
     const currentStation = stations.filter(
@@ -50,6 +57,21 @@ function StationProvider({ children }) {
         setSearchQuery(searchQuery);
     }
 
+    function addToFavorites(station) {
+        if (
+            favoriteStations?.some((st) => st.changeuuid === station.changeuuid)
+        ) {
+            return;
+        }
+        setFavoriteStations((stations) => [...stations, station]);
+    }
+    function removeFromFavorites(station) {
+        const newFav = favoriteStations.filter(
+            (st) => st.changeuuid !== station.changeuuid
+        );
+        setFavoriteStations(newFav);
+    }
+
     return (
         <StationContext.Provider
             value={{
@@ -60,6 +82,9 @@ function StationProvider({ children }) {
                 currentStation,
                 isLoading,
                 error,
+                favoriteStations,
+                addToFavorites,
+                removeFromFavorites,
             }}
         >
             {children}

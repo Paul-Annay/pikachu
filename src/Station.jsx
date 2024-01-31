@@ -2,7 +2,7 @@ import radio from "./radio.png";
 import { useStation } from "./StationContext";
 
 function Station({ station }) {
-    const { selectStation } = useStation();
+    const { currentStation, selectStation, addToFavorites } = useStation();
     const { name, country, favicon, tags, votes } = station;
     const tagList = tags.split(",");
     return (
@@ -24,10 +24,17 @@ function Station({ station }) {
             <span className="radio-votes">{votes}</span>
             <button
                 className="radio-play-btn"
-                onClick={() => selectStation(station.changeuuid)}
+                onClick={() => {
+                    currentStation?.changeuuid === station.changeuuid
+                        ? selectStation("")
+                        : selectStation(station.changeuuid);
+                }}
             >
-                Play
+                {currentStation?.changeuuid !== station.changeuuid
+                    ? "▶️"
+                    : "⏸️"}
             </button>
+            <button onClick={() => addToFavorites(station)}>➕</button>
         </div>
     );
 }

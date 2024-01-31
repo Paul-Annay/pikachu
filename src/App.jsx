@@ -4,9 +4,8 @@ import AppLayout from "./AppLayout";
 import Error from "./Error";
 import Favorites from "./Favorites";
 import Map from "./Map";
-import StationList from "./StationList";
-import { useStations } from "./useStations";
 import { StationProvider } from "./StationContext";
+import StationList from "./StationList";
 
 const router = createBrowserRouter([
     {

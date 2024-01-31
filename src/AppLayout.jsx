@@ -1,11 +1,10 @@
 import React from "react";
 import { InfinitySpin } from "react-loader-spinner";
 import { Outlet, useNavigation } from "react-router";
+import FilterBox from "./FilterBox";
 import Header from "./Header";
 import Player from "./Player";
 import Sidebar from "./Sidebar";
-import FilterBox from "./FilterBox";
-import { StationProvider } from "./StationContext";
 
 function AppLayout() {
     const navigation = useNavigation();

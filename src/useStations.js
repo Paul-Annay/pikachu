@@ -41,7 +41,6 @@ export function useStations(query, callback) {
             }
 
             if (query.length < 3) {
-                setMovies([]);
                 setError("");
                 return;
             }
