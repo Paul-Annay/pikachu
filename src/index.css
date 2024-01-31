@@ -120,3 +120,8 @@ body {
     position: relative;
     z-index: 1;
 }
+
+.fake-dark-mode {
+    filter: invert(100%);
+    transition: all 0.5s;
+}
