@@ -125,3 +125,32 @@ body {
     filter: invert(100%);
     transition: all 0.5s;
 }
+
+/* RADIO */
+.radio {
+    display: inline-block;
+    background-color: gray;
+    overflow: hidden;
+    padding: 2rem 4rem;
+    margin: 2rem 3rem;
+}
+
+.radio-name {
+}
+
+.radio-country {
+}
+
+.radio-image {
+    width: 48px;
+}
+
+.radio-tag {
+}
+
+.radio-votes {
+    display: inline-block;
+}
+
+.radio-play-btn {
+}

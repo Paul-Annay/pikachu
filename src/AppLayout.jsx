@@ -5,6 +5,7 @@ import Header from "./Header";
 import Player from "./Player";
 import Sidebar from "./Sidebar";
 import FilterBox from "./FilterBox";
+import { StationProvider } from "./StationContext";
 
 function AppLayout() {
     const navigation = useNavigation();
@@ -20,8 +21,8 @@ function AppLayout() {
                     ariaLabel="infinity-spin-loading"
                 />
             )}
-            <Sidebar />
 
+            <Sidebar />
             <div className="main">
                 <Header />
                 <FilterBox />

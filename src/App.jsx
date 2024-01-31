@@ -1,10 +1,12 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import Error from "./Error";
 import AppLayout from "./AppLayout";
-import StationList from "./StationList";
+import Error from "./Error";
 import Favorites from "./Favorites";
 import Map from "./Map";
+import StationList from "./StationList";
+import { useStations } from "./useStations";
+import { StationProvider } from "./StationContext";
 
 const router = createBrowserRouter([
     {
@@ -27,7 +29,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-    return <RouterProvider router={router} />;
+    return (
+        <StationProvider>
+            <RouterProvider router={router} />;
+        </StationProvider>
+    );
 }
 
 export default App;

@@ -1,13 +1,27 @@
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
+import { useStation } from "./StationContext";
 
 function Player() {
+    const { currentStation, isLoading, selectNext, selectPrevious } =
+        useStation();
     return (
         <div className="player">
             <AudioPlayer
                 autoPlay
-                src="https://mangoradio.stream.laut.fm/mangoradio?t302=2024-01-31_11-23-51&uuid=9a591259-6b16-4207-9a39-d48448272a38"
+                src={currentStation?.url}
                 onPlay={(e) => console.log(e)}
+                showSkipControls={true}
+                showJumpControls={false}
+                header={`Now playing: ${currentStation?.name}`}
+                onClickNext={(e) => {
+                    selectNext();
+                    console.log(e);
+                }}
+                onClickPrevious={(e) => {
+                    selectPrevious();
+                    console.log(e);
+                }}
             />
         </div>
     );
