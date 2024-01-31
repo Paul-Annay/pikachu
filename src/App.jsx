@@ -1,15 +1,33 @@
-import Sidebar from "./Sidebar";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
+import Error from "./Error";
+import AppLayout from "./AppLayout";
+import StationList from "./StationList";
+import Favorites from "./Favorites";
+import Map from "./Map";
+
+const router = createBrowserRouter([
+    {
+        element: <AppLayout />,
+        errorElement: <Error />,
+
+        children: [
+            {
+                path: "/",
+                element: <StationList />,
+            },
+            {
+                path: "/map",
+                element: <Map />,
+                errorElement: <Error />,
+            },
+            { path: "/favorites", element: <Favorites /> },
+        ],
+    },
+]);
 
 function App() {
-    console.log("everything is working fine!");
-    return (
-        <>
-            <Sidebar />
-            <main className="main">
-                <h1>Online Radio Player project</h1>
-            </main>
-        </>
-    );
+    return <RouterProvider router={router} />;
 }
 
 export default App;
