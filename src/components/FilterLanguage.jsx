@@ -11,15 +11,15 @@ function FilterLanguage() {
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const { searchQueryLanguage, setSearchQueryLanguage } = useStation();
+    const [inputValue, setInputValue] = useState("");
 
     const inputRef = useRef();
 
     function handleSearchQuery(e) {
         e.preventDefault();
-        if (searchQueryLanguage.length > 0)
-            setSearchQueryLanguage(e.target.value);
+        if (inputValue) setSearchQueryLanguage(inputValue);
 
-        navigate("/search");
+        navigate(`/search?language=${searchQueryLanguage}`);
     }
 
     useEffect(() => {
@@ -35,9 +35,9 @@ function FilterLanguage() {
             <input
                 className="filter-input"
                 placeholder="Filter by language"
-                value={searchQueryLanguage}
+                value={inputValue}
                 ref={inputRef}
-                onChange={(e) => setSearchQueryLanguage(e.target.value)}
+                onChange={(e) => setInputValue(e.target.value)}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => {
                     if (!isHovered) {
@@ -55,16 +55,13 @@ function FilterLanguage() {
                         const isMatch =
                             suggestion.name
                                 .toLowerCase()
-                                .indexOf(searchQueryLanguage.toLowerCase()) >
-                            -1;
+                                .indexOf(inputValue.toLowerCase()) > -1;
                         return (
                             <div key={i}>
                                 {isMatch && (
                                     <div
                                         onClick={() => {
-                                            setSearchQueryLanguage(
-                                                suggestion.name
-                                            );
+                                            setInputValue(suggestion.name);
                                             inputRef.current.focus();
                                         }}
                                     >

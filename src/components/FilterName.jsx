@@ -1,18 +1,22 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useStation } from "../contexts/StationContext";
 import { useNavigate } from "react-router-dom";
 
 function FilterName() {
     const navigate = useNavigate();
+    const [inputValue, setInputValue] = useState("");
+
     const { searchQueryName, setSearchQueryName } = useStation();
 
     const inputRef = useRef();
 
     function handleSearchQuery(e) {
         e.preventDefault();
-        if (searchQueryName.length > 0) setSearchQueryName(e.target.value);
+        if (inputValue) {
+            setSearchQueryName(inputValue);
+        }
 
-        navigate("/search");
+        navigate(`/search?name=${searchQueryName}`);
     }
 
     return (
@@ -20,9 +24,9 @@ function FilterName() {
             <input
                 className="filter-input"
                 placeholder="Filter by name"
-                value={searchQueryName}
+                value={inputValue}
                 ref={inputRef}
-                onChange={(e) => setSearchQueryName(e.target.value)}
+                onChange={(e) => setInputValue(e.target.value)}
             />
         </form>
     );

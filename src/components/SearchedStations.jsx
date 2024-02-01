@@ -3,18 +3,31 @@ import { useStations } from "../hooks/useStations";
 
 function SearchedStations() {
     const [params] = useSearchParams();
+
     const country = params.get("query");
+    const language = params.get("language");
+    const name = params.get("name");
+
+    let queryString = "";
+    if (country) {
+        queryString = `bycountrycodeexact/${country}`;
+    } else if (language) {
+        queryString = `bylanguage/${language}`;
+    } else if (name) {
+        queryString = `search?name=${name}`;
+    }
+
     const {
-        stations: stationsByCountry,
+        stations: stationsBySearch,
         isLoading,
         error,
-    } = useStations(`bycountrycodeexact/${country}`);
-    console.log(country, params, stationsByCountry);
+    } = useStations(queryString);
+    console.log(country, params, stationsBySearch);
     return (
         !error && (
             <div>
                 {!isLoading &&
-                    stationsByCountry.map((st) => (
+                    stationsBySearch.map((st) => (
                         <div key={st.changeuuid}>
                             {st.name} {st.country}
                         </div>
