@@ -1,8 +1,28 @@
-# React + Vite
+# Project Title: Online Radio Player
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Features:
 
-Currently, two official plugins are available:
+-   Browse Radio Stations
+-   Play, Pause, Mute, Select Next and Select Previous
+-   Display top 100 stations on Map via geolocation
+-   Add and Remove Favorite Stations into a list and store in local-storage
+-   Implementing Dark Mode Functionality
+-   Responsive Design
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Tech Stack
+
+-   ReactJS
+-   React Router
+-   Leaflet
+-   React h-5 Audio Player
+
+# React Features in use
+
+-   Context API - For Global State
+-   Router - For navigating to different urls
+-   Hooks and Effects - For data loading and rendering
+
+# Challenges:
+
+-   Using a single reusable filter component to dynamically search for the required stations (based on either language, country or name)
+-   Implementing the timer to play/pause a station
