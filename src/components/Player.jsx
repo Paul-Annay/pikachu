@@ -8,6 +8,14 @@ function Player() {
         <div className="player">
             <AudioPlayer
                 autoPlay
+                style={{
+                    borderRadius: "1rem",
+                    color: "#05093ab9",
+                    background: "#cfd3ff",
+                    boxShadow: "0px -1px 1px black",
+                    textAlign: "center",
+                    fontSize: "25px",
+                }}
                 src={currentStation?.url}
                 onPlay={(e) => console.log(e)}
                 showSkipControls={true}

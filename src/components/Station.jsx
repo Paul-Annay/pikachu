@@ -36,7 +36,12 @@ function Station({ station }) {
                     ? "▶️"
                     : "⏸️"}
             </button>
-            <button onClick={() => addToFavorites(station)}>➕</button>
+            <button
+                className={classes.radioAddBtn}
+                onClick={() => addToFavorites(station)}
+            >
+                ➕
+            </button>
         </div>
     );
 }

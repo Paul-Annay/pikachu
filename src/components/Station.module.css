@@ -55,5 +55,26 @@
     display: inline-block;
 }
 
-.radioPlayBtn {
+.radioPlayBtn,
+.radioAddBtn {
+    border: none;
+    color: beige;
+    padding: 0.4rem 0.8rem;
+    margin: 0 10px;
+    border-radius: 15px;
+    transition: all 0.2s;
+}
+
+.radioPlayBtn:hover,
+.radioAddBtn:hover {
+    transform: scale(1.1);
+    color: rgb(243, 243, 238);
+    box-shadow: 0 1px 3px #bbb;
+}
+
+.radioPlayBtn:active,
+.radioAddBtn:active {
+    transform: scale(0.8);
+    color: rgb(102, 102, 78);
+    box-shadow: 0 1px 3px #bbb;
 }
