@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import radio from "./radio.png";
-import { useStation } from "./StationContext";
+import { useStation } from "../contexts/StationContext";
 
 function Station({ station }) {
     const { currentStation, selectStation, addToFavorites } = useStation();

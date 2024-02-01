@@ -1,5 +1,5 @@
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import { useStation } from "./StationContext";
+import { useStation } from "../contexts/StationContext";
 
 function Map() {
     const mapPosition = [40, 0];

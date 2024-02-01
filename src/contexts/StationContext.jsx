@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
-import { useStations } from "./useStations";
-import { useLocalStorageState } from "./useLocalStorage";
+import { useStations } from "../hooks/useStations";
+import { useLocalStorageState } from "../hooks/useLocalStorage";
 
 const StationContext = createContext();
 

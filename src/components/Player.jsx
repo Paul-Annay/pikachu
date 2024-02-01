@@ -1,6 +1,6 @@
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
-import { useStation } from "./StationContext";
+import { useStation } from "../contexts/StationContext";
 
 function Player() {
     const { currentStation, selectNext, selectPrevious } = useStation();

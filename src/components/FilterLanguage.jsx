@@ -1,22 +1,23 @@
 import { useEffect, useRef, useState } from "react";
-import { useStation } from "./StationContext";
+import { useStation } from "../contexts/StationContext";
 import { useNavigate } from "react-router-dom";
 
-function FilterCountry() {
+function FilterLanguage() {
     const navigate = useNavigate();
-    const url = "http://de1.api.radio-browser.info/json/countries";
+    const url =
+        "http://de1.api.radio-browser.info/json/languages?hidebroken=true&limit=100&reverse=true&order=stationcount";
     const [suggestions, setSuggestion] = useState([]);
 
     const [isFocused, setIsFocused] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
-    const { searchQueryCountry, setSearchQueryCountry } = useStation();
+    const { searchQueryLanguage, setSearchQueryLanguage } = useStation();
 
     const inputRef = useRef();
 
     function handleSearchQuery(e) {
         e.preventDefault();
-        if (searchQueryCountry.length > 0)
-            setSearchQueryCountry(e.target.value);
+        if (searchQueryLanguage.length > 0)
+            setSearchQueryLanguage(e.target.value);
 
         navigate("/search");
     }
@@ -25,8 +26,6 @@ function FilterCountry() {
         fetch(url)
             .then((res) => res.json())
             .then((data) => {
-                console.log("country", data);
-
                 setSuggestion(data);
             });
     }, []);
@@ -35,10 +34,10 @@ function FilterCountry() {
         <form className="filter-item" onSubmit={handleSearchQuery}>
             <input
                 className="filter-input"
-                placeholder="Filter by countries"
-                value={searchQueryCountry}
+                placeholder="Filter by language"
+                value={searchQueryLanguage}
                 ref={inputRef}
-                onChange={(e) => setSearchQueryCountry(e.target.value)}
+                onChange={(e) => setSearchQueryLanguage(e.target.value)}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => {
                     if (!isHovered) {
@@ -53,17 +52,17 @@ function FilterCountry() {
                     onMouseLeave={() => setIsHovered(false)}
                 >
                     {suggestions.map((suggestion, i) => {
-                        console.log(suggestion);
                         const isMatch =
                             suggestion.name
                                 .toLowerCase()
-                                .indexOf(searchQueryCountry.toLowerCase()) > -1;
+                                .indexOf(searchQueryLanguage.toLowerCase()) >
+                            -1;
                         return (
                             <div key={i}>
                                 {isMatch && (
                                     <div
                                         onClick={() => {
-                                            setSearchQueryCountry(
+                                            setSearchQueryLanguage(
                                                 suggestion.name
                                             );
                                             inputRef.current.focus();
@@ -82,4 +81,4 @@ function FilterCountry() {
     );
 }
 
-export default FilterCountry;
+export default FilterLanguage;

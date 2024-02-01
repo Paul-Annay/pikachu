@@ -1,6 +1,6 @@
 import { InfinitySpin } from "react-loader-spinner";
 import Station from "./Station";
-import { useStation } from "./StationContext";
+import { useStation } from "../contexts/StationContext";
 
 function StationList() {
     const { stations, isLoading } = useStation();

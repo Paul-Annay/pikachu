@@ -1,12 +1,12 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import AppLayout from "./AppLayout";
-import Error from "./Error";
-import Favorites from "./Favorites";
-import Map from "./Map";
-import { StationProvider } from "./StationContext";
-import StationList from "./StationList";
-import SearchedStations from "./SearchedStations";
+import AppLayout from "./components/AppLayout";
+import Error from "./components/Error";
+import Favorites from "./components/Favorites";
+import Map from "./components/Map";
+import { StationProvider } from "./contexts/StationContext";
+import StationList from "./components/StationList";
+import SearchedStations from "./components/SearchedStations";
 
 const router = createBrowserRouter([
     {

@@ -1,5 +1,4 @@
-import React from "react";
-import { useStation } from "./StationContext";
+import { useStation } from "../contexts/StationContext";
 
 function Favorites() {
     const { favoriteStations, removeFromFavorites } = useStation();

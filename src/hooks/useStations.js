@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 const BASE_URL = "http://de1.api.radio-browser.info/json/stations";
 
+// eslint-disable-next-line no-unused-vars
 export function useStations(query, callback) {
     const [stations, setStations] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
