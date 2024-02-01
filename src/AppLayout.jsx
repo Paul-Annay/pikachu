@@ -1,4 +1,3 @@
-import React from "react";
 import { InfinitySpin } from "react-loader-spinner";
 import { Outlet, useNavigation } from "react-router";
 import FilterBox from "./FilterBox";

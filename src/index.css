@@ -154,3 +154,10 @@ body {
 
 .radio-play-btn {
 }
+
+/* SUGGESTION */
+.suggestion {
+    height: 100px;
+    background: beige;
+    overflow-y: auto;
+}

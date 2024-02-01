@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const BASE_URL = "http://de1.api.radio-browser.info/json";
+const BASE_URL = "http://de1.api.radio-browser.info/json/stations";
 
 export function useStations(query, callback) {
     const [stations, setStations] = useState([]);
@@ -19,13 +19,13 @@ export function useStations(query, callback) {
 
                     if (!res.ok) {
                         throw new Error(
-                            "Something went wrong with fetching movies"
+                            "Something went wrong with fetching stations"
                         );
                     }
                     const data = await res.json();
                     console.log(data);
                     if (data.Response === "False") {
-                        throw new Error("Movie not found");
+                        throw new Error("Station Not Found");
                     }
 
                     setStations(data);
@@ -45,7 +45,7 @@ export function useStations(query, callback) {
                 return;
             }
 
-            callback?.();
+            // callback?.();
             fetchStations();
             return function () {
                 controller.abort();
@@ -55,5 +55,5 @@ export function useStations(query, callback) {
         [query]
     );
 
-    return { stations, isLoading, error };
+    return { stations, isLoading, error, setIsLoading, setError, setStations };
 }

@@ -1,12 +1,13 @@
-import React from "react";
-import Filter from "./Filter";
+import FilterCountry from "./FilterCountry";
+import FilterLanguage from "./FilterLanguage";
+import FilterName from "./FilterName";
 
 function FilterBox() {
     return (
         <div className="filter-box">
-            <Filter holder="Country" />
-            <Filter holder="Language" />
-            <Filter holder="Name" />
+            <FilterCountry />
+            <FilterLanguage />
+            <FilterName />
         </div>
     );
 }

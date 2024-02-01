@@ -1,11 +1,12 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { useStations } from "./useStations";
 import { useLocalStorageState } from "./useLocalStorage";
 
 const StationContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 function StationProvider({ children }) {
-    const { stations, isLoading, error } = useStations("stations/topvote/15");
+    const { stations, isLoading, error } = useStations("topvote/100");
     const [favoriteStations, setFavoriteStations] = useLocalStorageState(
         [],
         "favoriteStations"
@@ -13,20 +14,48 @@ function StationProvider({ children }) {
     const [selectedStationId, setSelectedStationId] = useState(
         "4fcdf908-9025-4308-a82e-c061b42e6e28"
     );
-    const [searchQuery, setSearchQuery] = useState("");
+    const [searchQueryCountry, setSearchQueryCountry] = useState("");
+    const [searchQueryLanguage, setSearchQueryLanguage] = useState("");
+    const [searchQueryName, setSearchQueryName] = useState("");
 
     const currentStation = stations.filter(
         (station) => station.changeuuid === selectedStationId
     )[0];
 
-    const searchedStations =
-        searchQuery.length > 0
-            ? stations.filter((station) =>
-                  `${station.country}`
-                      .toLowerCase()
-                      .includes(searchQuery.toLowerCase())
-              )
-            : stations;
+    const { stations: stationsByCountry } = useStations(
+        `bycountrycodeexact/${searchQueryCountry}`,
+        handleSearchQueryCountry
+    );
+
+    const { stations: stationsByLanguage } = useStations(
+        `bylanguage/${searchQueryLanguage}`,
+        handleSearchQueryLanguage
+    );
+
+    const { stations: stationsByName } = useStations(
+        `search?name=${searchQueryName}`,
+        handleSearchQueryName
+    );
+
+    function handleSearchQueryCountry() {
+        setSearchQueryCountry("");
+    }
+
+    function handleSearchQueryLanguage() {
+        setSearchQueryLanguage("");
+    }
+
+    function handleSearchQueryName() {
+        setSearchQueryName("");
+    }
+    // const searchedStations =
+    //     searchQuery.length > 0
+    //         ? stations.filter((station) =>
+    //               `${station.country}`
+    //                   .toLowerCase()
+    //                   .includes(searchQuery.toLowerCase())
+    //           )
+    //         : stations;
 
     function handleSelect(id) {
         setSelectedStationId(id);
@@ -52,11 +81,6 @@ function StationProvider({ children }) {
         setSelectedStationId(stations[currentIndex - 1].changeuuid);
     }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        setSearchQuery(searchQuery);
-    }
-
     function addToFavorites(station) {
         if (
             favoriteStations?.some((st) => st.changeuuid === station.changeuuid)
@@ -75,7 +99,7 @@ function StationProvider({ children }) {
     return (
         <StationContext.Provider
             value={{
-                stations: searchedStations,
+                stations,
                 selectStation: handleSelect,
                 selectNext: handleSelectNext,
                 selectPrevious: handleSelectPrevious,
@@ -83,8 +107,17 @@ function StationProvider({ children }) {
                 isLoading,
                 error,
                 favoriteStations,
+                searchQueryCountry,
+                searchQueryLanguage,
+                searchQueryName,
+                setSearchQueryCountry,
+                setSearchQueryLanguage,
+                setSearchQueryName,
                 addToFavorites,
                 removeFromFavorites,
+                stationsByCountry,
+                stationsByLanguage,
+                stationsByName,
             }}
         >
             {children}
@@ -100,4 +133,5 @@ function useStation() {
     return context;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export { StationProvider, useStation };

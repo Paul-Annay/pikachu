@@ -6,6 +6,7 @@ import Favorites from "./Favorites";
 import Map from "./Map";
 import { StationProvider } from "./StationContext";
 import StationList from "./StationList";
+import SearchedStations from "./SearchedStations";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
                 errorElement: <Error />,
             },
             { path: "/favorites", element: <Favorites /> },
+            { path: "/search", element: <SearchedStations /> },
         ],
     },
 ]);
