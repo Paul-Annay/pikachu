@@ -21,42 +21,6 @@ function StationProvider({ children }) {
     const currentStation = stations.filter(
         (station) => station.changeuuid === selectedStationId
     )[0];
-
-    // const { stations: stationsByCountry } = useStations(
-    //     `bycountrycodeexact/${searchQueryCountry}`,
-    //     handleSearchQueryCountry
-    // );
-
-    // const { stations: stationsByLanguage } = useStations(
-    //     `bylanguage/${searchQueryLanguage}`,
-    //     handleSearchQueryLanguage
-    // );
-
-    // const { stations: stationsByName } = useStations(
-    //     `search?name=${searchQueryName}`,
-    //     handleSearchQueryName
-    // );
-
-    // function handleSearchQueryCountry() {
-    //     setSearchQueryCountry("");
-    // }
-
-    // function handleSearchQueryLanguage() {
-    //     setSearchQueryLanguage("");
-    // }
-
-    // function handleSearchQueryName() {
-    //     setSearchQueryName("");
-    // }
-    // const searchedStations =
-    //     searchQuery.length > 0
-    //         ? stations.filter((station) =>
-    //               `${station.country}`
-    //                   .toLowerCase()
-    //                   .includes(searchQuery.toLowerCase())
-    //           )
-    //         : stations;
-
     function handleSelect(id) {
         setSelectedStationId(id);
     }
@@ -115,9 +79,6 @@ function StationProvider({ children }) {
                 setSearchQueryName,
                 addToFavorites,
                 removeFromFavorites,
-                // stationsByCountry,
-                // stationsByLanguage,
-                // stationsByName,
             }}
         >
             {children}

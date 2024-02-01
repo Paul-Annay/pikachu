@@ -1,30 +1,31 @@
 /* eslint-disable react/prop-types */
 import radio from "../radio.png";
 import { useStation } from "../contexts/StationContext";
+import classes from "./Station.module.css";
 
 function Station({ station }) {
     const { currentStation, selectStation, addToFavorites } = useStation();
     const { name, country, favicon, tags, votes } = station;
     const tagList = tags.split(",");
     return (
-        <div className="radio">
-            <h2 className="radio-name">{name}</h2>
-            <h3 className="radio-country">{country}</h3>
+        <div className={classes.radio}>
+            <h2 className={classes.radioName}>{name}</h2>
+            <h3 className={classes.radioCountry}>{country}</h3>
             <img
-                className="radio-image"
+                className={classes.radioImage}
                 src={favicon ? favicon : radio}
                 alt={name}
             />
-            <div className="radio-tag-list">
+            <div className={classes.radioTagList}>
                 {tagList.map((tag, index) => (
-                    <span className="radio-tag" key={index}>
+                    <span className={classes.radioTag} key={index}>
                         {tag}
                     </span>
                 ))}
             </div>
-            <span className="radio-votes">{votes}</span>
+            <span className={classes.radioVotes}>Votes: {votes}</span>
             <button
-                className="radio-play-btn"
+                className={classes.radioPlayBtn}
                 onClick={() => {
                     currentStation?.changeuuid === station.changeuuid
                         ? selectStation("")
