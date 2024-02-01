@@ -29,3 +29,8 @@ Features:
 
 # Component Hierarchy
 ![Component Hierarchy](https://github.com/Paul-Annay/pikachu/assets/84911232/c1520fca-0a80-40a1-bb30-03ce2472821e)
+
+# Demo
+The video below introduces the working features along with the required improvements in a nutshell!
+
+[YouTube Link](https://youtu.be/eNgIvZHqBp8)
