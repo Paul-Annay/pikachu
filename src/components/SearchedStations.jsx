@@ -1,16 +1,26 @@
-import { useStation } from "../contexts/StationContext";
+import { useSearchParams } from "react-router-dom";
+import { useStations } from "../hooks/useStations";
 
 function SearchedStations() {
-    const { stationsByCountry } = useStation();
-    console.log(stationsByCountry);
+    const [params] = useSearchParams();
+    const country = params.get("query");
+    const {
+        stations: stationsByCountry,
+        isLoading,
+        error,
+    } = useStations(`bycountrycodeexact/${country}`);
+    console.log(country, params, stationsByCountry);
     return (
-        <div>
-            {stationsByCountry.map((st) => (
-                <div key={st.changeuuid}>
-                    {st.name} {st.country}
-                </div>
-            ))}
-        </div>
+        !error && (
+            <div>
+                {!isLoading &&
+                    stationsByCountry.map((st) => (
+                        <div key={st.changeuuid}>
+                            {st.name} {st.country}
+                        </div>
+                    ))}
+            </div>
+        )
     );
 }
 

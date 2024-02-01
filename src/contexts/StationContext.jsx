@@ -22,32 +22,32 @@ function StationProvider({ children }) {
         (station) => station.changeuuid === selectedStationId
     )[0];
 
-    const { stations: stationsByCountry } = useStations(
-        `bycountrycodeexact/${searchQueryCountry}`,
-        handleSearchQueryCountry
-    );
+    // const { stations: stationsByCountry } = useStations(
+    //     `bycountrycodeexact/${searchQueryCountry}`,
+    //     handleSearchQueryCountry
+    // );
 
-    const { stations: stationsByLanguage } = useStations(
-        `bylanguage/${searchQueryLanguage}`,
-        handleSearchQueryLanguage
-    );
+    // const { stations: stationsByLanguage } = useStations(
+    //     `bylanguage/${searchQueryLanguage}`,
+    //     handleSearchQueryLanguage
+    // );
 
-    const { stations: stationsByName } = useStations(
-        `search?name=${searchQueryName}`,
-        handleSearchQueryName
-    );
+    // const { stations: stationsByName } = useStations(
+    //     `search?name=${searchQueryName}`,
+    //     handleSearchQueryName
+    // );
 
-    function handleSearchQueryCountry() {
-        setSearchQueryCountry("");
-    }
+    // function handleSearchQueryCountry() {
+    //     setSearchQueryCountry("");
+    // }
 
-    function handleSearchQueryLanguage() {
-        setSearchQueryLanguage("");
-    }
+    // function handleSearchQueryLanguage() {
+    //     setSearchQueryLanguage("");
+    // }
 
-    function handleSearchQueryName() {
-        setSearchQueryName("");
-    }
+    // function handleSearchQueryName() {
+    //     setSearchQueryName("");
+    // }
     // const searchedStations =
     //     searchQuery.length > 0
     //         ? stations.filter((station) =>
@@ -115,9 +115,9 @@ function StationProvider({ children }) {
                 setSearchQueryName,
                 addToFavorites,
                 removeFromFavorites,
-                stationsByCountry,
-                stationsByLanguage,
-                stationsByName,
+                // stationsByCountry,
+                // stationsByLanguage,
+                // stationsByName,
             }}
         >
             {children}

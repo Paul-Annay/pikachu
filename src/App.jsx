@@ -24,7 +24,11 @@ const router = createBrowserRouter([
                 errorElement: <Error />,
             },
             { path: "/favorites", element: <Favorites /> },
-            { path: "/search", element: <SearchedStations /> },
+            {
+                path: "/search",
+                search: "?query=value",
+                element: <SearchedStations />,
+            },
         ],
     },
 ]);
