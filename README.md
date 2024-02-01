@@ -26,3 +26,6 @@ Features:
 
 -   Using a single reusable filter component to dynamically search for the required stations (based on either language, country or name)
 -   Implementing the timer to play/pause a station
+
+# Component Hierarchy
+![Component Hierarchy](https://github.com/Paul-Annay/pikachu/assets/84911232/c1520fca-0a80-40a1-bb30-03ce2472821e)
